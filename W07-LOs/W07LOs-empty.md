@@ -146,17 +146,33 @@ function fibTab(n) {
 
 1. Explain the complexity of and write a function that performs bubble sort on an array of numbers.
 
--   Time Complexity: O(\_\_)
--   Space Complexity: O(\_\_)
+-   _Time Complexity_: O(n^2)
+-   _Space Complexity_: O(1)
 -   Code:
 
 ```javascript
-function bubbleSort(array) {}
+function bubbleSort(array) {
+    let noSwaps;
+
+    for (let i = array.length - 1; i > 0; i--) {
+        noSwaps = true;
+        for (let j = 0; j <= i - 1; j++) {
+            if (array[j] > array[j + 1]) {
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                noSwaps = false;
+            }
+        }
+        if (noSwaps) break;
+    }
+    return array;
+}
 ```
 
 2. Explain the complexity of and write a function that performs selection sort on an array of numbers.
 
--   Time Complexity: O(\_\_)
+-   _Time Complexity_: O(\_\_)
 -   Space Complexity: O(\_\_)
 -   Code:
 
