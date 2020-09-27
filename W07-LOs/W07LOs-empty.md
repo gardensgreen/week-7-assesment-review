@@ -172,12 +172,27 @@ function bubbleSort(array) {
 
 2. Explain the complexity of and write a function that performs selection sort on an array of numbers.
 
--   _Time Complexity_: O(\_\_)
--   Space Complexity: O(\_\_)
+-   _Time Complexity_: O(n^2)
+-   Space Complexity: O(1)
 -   Code:
 
 ```javascript
-function selectionSort(array) {}
+function selectionSort(array) {
+    for (let i = 0; i < array.length; i++) {
+        let min = i;
+        for (let j = i + 1; j < array.length; j++) {
+            if (array[j] < array[min]) {
+                min = j;
+            }
+        }
+        if (i !== min) {
+            let temp = array[i];
+            array[i] = array[min];
+            array[min] = temp;
+        }
+    }
+    return array;
+}
 ```
 
 3. Explain the complexity of and write a function that performs insertion sort on an array of numbers.
