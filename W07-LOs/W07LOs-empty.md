@@ -197,12 +197,21 @@ function selectionSort(array) {
 
 3. Explain the complexity of and write a function that performs insertion sort on an array of numbers.
 
--   Time Complexity: O(\_\_)
--   Space Complexity: O(\_\_)
+-   _Time Complexity_: O(n^2)
+-   _Space Complexity_: O(1)
 -   Code:
 
 ```javascript
-function insertionSort(array) {}
+function insertionSort(array) {
+    for (let i = 1; i < array.length; i++) {
+        let currentValue = array[i];
+        for (let j = i - 1; j >= 0 && array[j] > currentValue; j++) {
+            array[j + 1] = array[j];
+        }
+        array[j + 1] = currentValue;
+    }
+    return array;
+}
 ```
 
 4. Explain the complexity of and write a function that performs merge sort on an array of numbers.
