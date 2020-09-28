@@ -248,6 +248,15 @@ function merge(array1, array2) {
     return merged;
 }
 
+[1, 3, 8, 4, 2, 5, 6];
+          m;
+left = [1, 3, 8];
+right = [2, 5, 6];
+[1,3,8]                 [2, 5, 6]
+left = [1]              left = [2]
+right = [3, 8]          right = [5, 6]
+
+sortedLeft
 function mergeSort(array) {
     if (array.length <= 1) {
         return array;
@@ -266,22 +275,51 @@ function mergeSort(array) {
 
 5. Explain the complexity of and write a function that performs quick sort on an array of numbers.
 
--   Time Complexity: O(\_\_)
--   Space Complexity: O(\_\_)
+-   _Time Complexity_: O(n^2/n log n) _\*Worst case/Average case_
+-   _Space Complexity_: O(n/log n) _\*Worst case/ Average case_
 -   Code:
 
 ```javascript
-function quickSort(array) {}
+function quickSort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    let pivot = array.shift();
+    let left = array.filter((el) => el < pivot);
+    let right = array.filter((el) => el >= pivot);
+
+    let leftSort = quickSort(left);
+    let rightSort = quickSort(right);
+
+    return [...leftSorted, pivot, ...rightSorted];
+}
 ```
 
 6. Explain the complexity of and write a function that performs a binary search on a sorted array of numbers.
 
--   Time Complexity: O(\_\_)
--   Space Complexity: O(\_\_)
+-   _Time Complexity_: O(log n)
+-   _Space Complexity_: O(1)
 -   Code:
 
 ```javascript
-function bindarySearch(array) {}
+function binarySearch(array, value) {
+    const pivot = Math.ceil(left + right / 2);
+
+    let left = 0;
+    let right = array.length - 1;
+    while (left <= right) {
+        if (value < array[pivot]) {
+            right = pivot;
+            pivot = Math.floor(left + right/2)
+        if (value >= array[pivot]){
+            left = pivot;
+            pivot = Math.ceil(left + right/2)
+
+        }
+        if (value === array[pivot]) return pivot;
+    }
+}
 ```
 
 ## Lists, Stacks, and Queues (W7D4) - Learning Objectives
@@ -291,35 +329,78 @@ function bindarySearch(array) {}
 1. Explain and implement a Linked List.
 
 -   What properties does an instance of a linked list track?
+
+    -   _Head_: Beginning of linked list, first node
+    -   _Tail_: End of linked list, last node
+    -   _length_: Amount of connected nodes
+    -   \*\*_- The main differences between lists and arrays are that a list does not have random access or indices to signify where in the list an element is._
+    -   _The only references to elements that we have in a list are the head and the tail._
+    -   _If we want an element in the middle of the list, we would have to traverse the list until we encountered it._
+    -   _The two main types of linked lists that we talked about are Singly Linked Lists and Doubly Linked Lists._
+    -   _Singly Linked Lists are composed of nodes that only have a reference to the next node in the list. We can only traverse the list in one direction._
+    -   _Doubly Linked Lists are composed of nodes that have a reference to both the next node and the previous node in the list. This allows us to traverse both forwards and backwards._
+
 -   What methods does a linked list need to implement?
+
+    -   _addToHead()_: Adds a new node at the beginning of the list.
+    -   _addToTail()_: Adds a new node at the end of the list.
+    -   _removeTail()_: Removes node at the end of the list.
+    -   _removeHead()_: Removes node at the beginning of the list.
+    -   _insertAt()_: Adds a new node at the specified position (we need to traverse to that point, then update pointers)
+    -   _removeFrom()_: Removes the node at the specified position (we need to traverse to that point, then update pointers)
+    -   _contains()_: Traverses the list and returns a boolean to indicate if the value was found at any node.
+    -   _get()_: Returns a reference to the node at the specified position.
+    -   _set()_: Updates the value of the node at the specified position.
+    -   _size()_: returns the current length of the list
+
 -   What are the time complexities for these methods?
--   What's the difference between a Singly Linked List and a Doubly Linked List? How would the difference impact the properties and the methods that we implement?
--   Practice creating both types. Use Thursday's project as an example/guide.
+
+    -   _Accessing a node_: O(n), because we may have to traverse the entire list.
+    -   _Searching a list_: O(n), because we may have to traverse the entire list.
+    -   _Inserting a value_: O(1), under the assumption that we have a reference to the node that we want to insert it after/before. If we don't have this reference we would first have to access it (O(n) from above), but the actual creation is O(1)
+    -   _Deleting a node_: O(1), for the same reasons as insertion. If we first need to find the previous and next nodes, we would need to access them (O(n) from above), but the actual deletion is O(1)
+
+-   Be able to implement a Singly Linked List and a Doubly Linked List.
+
+    -   _This would require you to use a Node class with a value instance variable and an instance variable that points to the next (and possibly previous) Node instance(s). You should then be able to interact with these Nodes to perform all of the actions of a Linked List, as we defined above._
 
 2. Explain and implement a Stack.
 
 -   Define LIFO and ADT and how it relates
+
+    -   _LIFO_: Last in first out data structure.
+    -   _ADT_: The actual implementation of the stack may very as long as the main principles and methods associated with them are abided by in the implementation.We could use Nodes like we did with Linked Lists, we could use an Array as an underlying instance variable as long as the methods we implement only interact with it in the way a stack should be interacted with, etc.
+
 -   What methods does a stack need to implement?
+
+    -   _Push()_: Adds to the top of the stack
+    -   _Pop()_: Removes from the top of the stack. (Last Item)
+    -   _Peek()_: Returns the value of the top element in the stack.
+    -   _Size()_: Returns the amount of items in the stack.
+
 -   What are the time complexities for these methods?
+
+    -   _Adding an element_: O(1), since we are always adding it to the top and the addition doesn't affect any other elements.
+    -   _Removing an element_: O(1), we're always taking the top element of the stack.
+    -   _Finding or Accessing a particular element_: O(n), since we can only interact with our stack by removing elements from the top, we may have to remove every element to find what we're looking for.
+
 -   Know how to implement a stack using both a node class as well as just an array instance variable. Use Thursday's project as an example/guide for your usage of a Node. How would this change if we just wanted to keep an array instance variable on our Stack instead?
 
 3. Explain and implement a Queue.
 
 -   Define FIFO and ADT and how it relates
+
+    -   _FIFO_: First in first out data structure.
+    -   _ADT_: The actual implementation of the queue can vary as long as the main principles and methods associated with them are abided by. We could use Nodes like we did with Linked Lists, we could use an Array as an underlying instance variable as long as the methods we implement only interact with it in the way a queue should be interacted with, etc.
+
 -   What methods does a queue need to implement?
+
+    -   _enqueue()_: Adds an element to the beginning of the queue
+    -   _dequeue()_: Removes an element from the end of the queue
+    -   _peek()_: Returns the value of the front element of the queue.
+    -   _length()_: Returns the amount of elements in the queue
+
 -   What are the time complexities for these methods?
--   Know how to implement a queue using both a node class as well as just an array instance variable. Use Thursday's project as an example/guide for your usage of a Node. How would this change if we just wanted to keep an array instance variable on our Queue instead?
-
-## Heaps (W7D5) - Learning Objectives
-
-### Heaps
-
--   Explain and implement a Heap.
-    1. What is a max (or min) heap?
-    2. How is a binary heap different from a binary search tree?
-    3. What is a complete tree? How does it relate to heaps?
-    4. What is a commmon way to represent heaps in JavaScript?
-    5. In this representation, how can we find any particular node's parent or children?
-    6. What processes do we need to follow when we insert an element into a heap?
-    7. What processes do we need to follow when we remove then root of a heap?
-    8. Given an array, determine if it represents a max (or min) heap.
+    -   _Adding an element_: O(1), since we are always adding it to the back. If we are using Nodes instead of a simple array, keeping a reference to the last node allows us to immediately update these pointers without having to do any traversal.
+    -   _Removing an element_: O(1), we're always taking the front element of the queue.
+    -   _Finding or Accessing a particular element_: O(n), since we can only interact with our queue by removing elements from the front, we may have to remove every element to find what we're looking for.

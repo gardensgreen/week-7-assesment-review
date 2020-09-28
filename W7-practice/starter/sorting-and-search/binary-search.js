@@ -5,3 +5,9 @@ function binarySearch(array, target) {}
 // Create a binary search that returns the index of the target if it exists
 // in the array and -1 if not. (Try implementing with both recursion and iteration!)
 function binarySearchIndex(array, target) {}
+
+function binarySearch(array, value) {
+    let left = 0;
+    let right = array[i];
+    let;
+}
