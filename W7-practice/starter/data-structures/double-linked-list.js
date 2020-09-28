@@ -123,9 +123,21 @@ class LinkedList {
         return removed;
     }
 
-    size() {}
+    size() {
+        return this.length;
+    }
 
-    peakHead() {}
+    peakHead() {
+        if (!this.head) {
+            return undefined;
+        }
+        return this.head.value;
+    }
 
-    peakTail() {}
+    peakTail() {
+        if (!this.tail) {
+            return undefined;
+        }
+        return this.tail.value;
+    }
 }
