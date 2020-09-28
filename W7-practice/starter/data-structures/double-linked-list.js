@@ -27,19 +27,34 @@ class LinkedList {
     }
 
     removeTail() {
+        let current = this.tail;
         if (!this.head) {
             return undefined;
         } else if (this.head === this.tail) {
             this.head = null;
             this.tail = null;
         } else {
-            this.tail = this.tail.previous;
+            this.tail = current.previous;
             this.tail.next = null;
         }
+
         this.length--;
+        return current.value;
     }
 
-    addToHead(val) {}
+    addToHead(val) {
+        let temp = new Node(val);
+        if (this.head) {
+            temp.next = this.head;
+            this.head.previous = temp;
+        } else {
+            this.tail = temp;
+        }
+
+        this.head = temp;
+        this.length++;
+        return this;
+    }
 
     removeHead() {}
 
