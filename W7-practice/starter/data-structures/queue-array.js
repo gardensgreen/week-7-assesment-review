@@ -1,9 +1,17 @@
 class QueueArray {
-	constructor() {}
+    constructor() {
+        this.store = [];
+    }
 
-	enqueue(value) {}
+    enqueue(value) {
+        this.store.push(value);
+    }
 
-	dequeue() {}
+    dequeue() {
+        this.store.shift();
+    }
 
-	peek() {}
+    peek() {
+        return this.store[0];
+    }
 }

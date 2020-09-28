@@ -1,9 +1,17 @@
 class StackArray {
-	constructor() {}
+    constructor() {
+        this.store = [];
+    }
 
-	push(value) {}
+    push(value) {
+        this.store.push(value);
+    }
 
-	pop() {}
+    pop() {
+        this.store.pop(value);
+    }
 
-	peek() {}
+    peek() {
+        return this.store[this.store.length - 1];
+    }
 }
