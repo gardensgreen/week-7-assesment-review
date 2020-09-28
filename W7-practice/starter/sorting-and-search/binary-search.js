@@ -31,7 +31,7 @@ function binarySearchIndex(array, target, lo = 0, hi = array.length - 1) {
     }
 }
 
-function search(nums, target) {
+function binarySearchIteration(nums, target) {
     let left = 0;
     let right = nums.length - 1;
     let pivot = Math.floor((left + right) / 2);
