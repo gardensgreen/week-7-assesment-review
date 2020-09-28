@@ -56,7 +56,18 @@ class LinkedList {
         return this;
     }
 
-    removeHead() {}
+    removeHead() {
+        if (!this.head) return undefined;
+        const currentHead = this.head;
+        this.head = currentHead.next;
+        if (this.head) {
+            this.head.previous = null;
+        } else {
+            this.tail = null;
+        }
+        this.length--;
+        return currentHead.value;
+    }
 
     contains(target) {}
 
