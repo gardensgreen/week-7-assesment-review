@@ -98,9 +98,30 @@ class LinkedList {
         return false;
     }
 
-    insert(index, val) {}
+    insert(index, val) {
+        if (index < 0 || index > this.length) return false;
+        if (index === this.length) return !!this.addToTail(val);
+        if (index === 0) return !!this.addToHead(val);
 
-    remove(index) {}
+        const newNode = new Node(val);
+        const prev = this.get(index - 1);
+        const temp = prev.next;
+        prev.next = newNode;
+        newNode.next = temp;
+        this.length++;
+        return true;
+    }
+
+    remove(index) {
+        if (index < 0 || index >= this.length) return undefined;
+        if (index === 0) return this.removeHead();
+        if (index === this.length - 1) return this.removeTail();
+        const previousNode = this.get(index - 1);
+        const removed = previousNode.next;
+        previousNode.next = removed.next;
+        this.length--;
+        return removed;
+    }
 
     size() {}
 
